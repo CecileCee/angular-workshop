@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="services">
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="normalize.css">
+    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="../servicesApp.js"></script>
+    <script type="text/javascript" src="../servicesController.js"></script>
+    <meta charset="UTF-8">
+    <title>ANGULARJS - chapitre 3 - exercice 2, Application Services</title>
+  </head>
+
+  <body ng-controller="MainCtrl">
+
+    <div class="container ">
+
+      <div class="row"> <!-- Tire Exo 2 -->
+        <div class="head-title bg-black">
+          <h4>Exo 2 : Services</h4>
+        </div>
+      </div>
+
+
+      <div class="container-fluid services-box">
+
+        <div class="row"> <!-- Titre Services -->
+          <div class="box-title">
+            <h3 class="title-style">Services</h3>
+          </div>
+        </div>
+
+        <div class="row"> <!-- Instructions -->
+          <div class="box-btn bg-light marginBot">
+            <p class="tx-black">Choisissez les éléments à inclure : <br /></p>
+            <ng-pluralize class="tx-black"
+              count="nbServices"
+              when="{
+              '0' : '0 service sélectionné',
+              '1' : '1 service sélectionné',
+              '2': '2 services sélectionnés',
+              '3': '3 services sélectionnés',
+              '4' : '4 services sélectionnés'}">
+              </ng-pluralize>
+          </div>
+        </div>
+
+        <div class="row" ng-repeat="service in services"> <!-- services -->
+          <div class="btn box-btn tx-size" ng-click="toggleActive(service)" ng-class="{'selected':service.active, 'unselected':!service.active}">
+              <div class="col-lg-6 col-md-6 text-left">{{ service.name }}</div>
+              <div class="col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2 text-right">{{ service.price | currency: '' }} €</div>
+          </div>
+        </div>
+
+        <div class="row"> <!-- Total -->
+          <div class="box-btn box-style" ng-model="total">
+            <p class="total">Total : {{ total }}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
